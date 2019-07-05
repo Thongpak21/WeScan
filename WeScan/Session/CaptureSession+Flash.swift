@@ -9,7 +9,7 @@
 import Foundation
 
 /// Extension to CaptureSession to manage the device flashlight
-extension CaptureSession {
+public extension CaptureSession {
     /// The possible states that the current device's flashlight can be in
     enum FlashState {
         case on

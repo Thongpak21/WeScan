@@ -61,8 +61,8 @@ public final class ImageScannerController: UINavigationController {
         
         self.imageScannerDelegate = delegate
         
-        navigationBar.tintColor = .black
-        navigationBar.isTranslucent = false
+//        navigationBar.tintColor = .black
+//        navigationBar.isTranslucent = false
         self.view.addSubview(blackFlashView)
         setupConstraints()
         
@@ -121,7 +121,7 @@ public final class ImageScannerController: UINavigationController {
         return .portrait
     }
     
-    internal func flashToBlack() {
+    public func flashToBlack() {
         view.bringSubviewToFront(blackFlashView)
         blackFlashView.isHidden = false
         let flashDuration = DispatchTime.now() + 0.05

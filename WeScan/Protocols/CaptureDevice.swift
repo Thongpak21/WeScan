@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 
-protocol CaptureDevice: class {
+public protocol CaptureDevice: class {
     func unlockForConfiguration()
     func lockForConfiguration() throws
     
@@ -31,33 +31,33 @@ protocol CaptureDevice: class {
 
 extension AVCaptureDevice: CaptureDevice { }
 
-final class MockCaptureDevice: CaptureDevice {
-    func unlockForConfiguration() {
+public final class MockCaptureDevice: CaptureDevice {
+    public func unlockForConfiguration() {
         return
     }
     
-    func lockForConfiguration() throws {
+    public func lockForConfiguration() throws {
         return
     }
     
-    var torchMode: AVCaptureDevice.TorchMode = .off
-    var isTorchAvailable: Bool = true
+    public var torchMode: AVCaptureDevice.TorchMode = .off
+    public var isTorchAvailable: Bool = true
     
-    var focusMode: AVCaptureDevice.FocusMode = .continuousAutoFocus
-    var focusPointOfInterest: CGPoint = .zero
-    var isFocusPointOfInterestSupported: Bool = true
+    public var focusMode: AVCaptureDevice.FocusMode = .continuousAutoFocus
+    public var focusPointOfInterest: CGPoint = .zero
+    public var isFocusPointOfInterestSupported: Bool = true
     
-    var exposureMode: AVCaptureDevice.ExposureMode = .continuousAutoExposure
-    var exposurePointOfInterest: CGPoint = .zero
-    var isExposurePointOfInterestSupported: Bool = true
+    public var exposureMode: AVCaptureDevice.ExposureMode = .continuousAutoExposure
+    public var exposurePointOfInterest: CGPoint = .zero
+    public var isExposurePointOfInterestSupported: Bool = true
     
-    func isFocusModeSupported(_ focusMode: AVCaptureDevice.FocusMode) -> Bool {
+    public func isFocusModeSupported(_ focusMode: AVCaptureDevice.FocusMode) -> Bool {
         return true
     }
     
-    func isExposureModeSupported(_ exposureMode: AVCaptureDevice.ExposureMode) -> Bool {
+    public func isExposureModeSupported(_ exposureMode: AVCaptureDevice.ExposureMode) -> Bool {
         return true
     }
     
-    var isSubjectAreaChangeMonitoringEnabled: Bool = false
+    public var isSubjectAreaChangeMonitoringEnabled: Bool = false
 }

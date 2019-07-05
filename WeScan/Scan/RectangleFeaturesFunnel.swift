@@ -16,7 +16,7 @@ enum AddResult {
 
 /// `RectangleFeaturesFunnel` is used to improve the confidence of the detected rectangles.
 /// Feed rectangles to a `RectangleFeaturesFunnel` instance, and it will call the completion block with a rectangle whose confidence is high enough to be displayed.
-final class RectangleFeaturesFunnel {
+public final class RectangleFeaturesFunnel {
     
     /// `RectangleMatch` is a class used to assign matching scores to rectangles.
     private final class RectangleMatch: NSObject {

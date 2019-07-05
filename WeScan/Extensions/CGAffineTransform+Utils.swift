@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension CGAffineTransform {
+public extension CGAffineTransform {
     
     /// Convenience function to easily get a scale `CGAffineTransform` instance.
     ///

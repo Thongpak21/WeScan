@@ -9,7 +9,7 @@
 import Foundation
 
 /// Objects that conform to the Transformable protocol are capable of being transformed with a `CGAffineTransform`.
-protocol Transformable {
+public protocol Transformable {
     
     /// Applies the given `CGAffineTransform`.
     ///
@@ -20,7 +20,7 @@ protocol Transformable {
 
 }
 
-extension Transformable {
+public extension Transformable {
     
     /// Applies multiple given transforms in the given order.
     ///

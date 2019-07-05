@@ -18,7 +18,7 @@ enum CornerPosition {
 }
 
 /// The `QuadrilateralView` is a simple `UIView` subclass that can draw a quadrilateral, and optionally edit it.
-final class QuadrilateralView: UIView {
+public final class QuadrilateralView: UIView {
     
     private let quadLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
@@ -137,7 +137,7 @@ final class QuadrilateralView: UIView {
     ///
     /// - Parameters:
     ///   - quad: The quadrilateral to draw on the view. It should be in the coordinates of the current `QuadrilateralView` instance.
-    func drawQuadrilateral(quad: Quadrilateral, animated: Bool) {
+    public func drawQuadrilateral(quad: Quadrilateral, animated: Bool) {
         self.quad = quad
         drawQuad(quad, animated: animated)
         if editable {
@@ -172,7 +172,7 @@ final class QuadrilateralView: UIView {
         bottomRightCornerView.center = quad.bottomRight
     }
     
-    func removeQuadrilateral() {
+    public func removeQuadrilateral() {
         quadLayer.path = nil
         quadLayer.isHidden = true
     }
@@ -211,7 +211,7 @@ final class QuadrilateralView: UIView {
         cornerView.highlightWithImage(image)
     }
     
-    func resetHighlightedCornerViews() {
+    public func resetHighlightedCornerViews() {
         isHighlighted = false
         resetHighlightedCornerViews(cornerViews: [topLeftCornerView, topRightCornerView, bottomLeftCornerView, bottomRightCornerView])
     }

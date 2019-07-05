@@ -9,7 +9,7 @@
 import UIKit
 
 /// A simple button used for the shutter.
-final class ShutterButton: UIControl {
+public final class ShutterButton: UIControl {
     
     private let outterRingLayer = CAShapeLayer()
     private let innerCircleLayer = CAShapeLayer()
@@ -19,7 +19,7 @@ final class ShutterButton: UIControl {
     
     private let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
-    override var isHighlighted: Bool {
+    override public var isHighlighted: Bool {
         didSet {
             if oldValue != isHighlighted {
                 animateInnerCircleLayer(forHighlightedState: isHighlighted)
@@ -45,7 +45,7 @@ final class ShutterButton: UIControl {
     
     // MARK: - Drawing
     
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         super.draw(rect)
 
         outterRingLayer.frame = rect

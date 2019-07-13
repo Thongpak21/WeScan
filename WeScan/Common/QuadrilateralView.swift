@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 /// Simple enum to keep track of the position of the corners of a quadrilateral.
-enum CornerPosition {
+public enum CornerPosition {
     case topLeft
     case topRight
     case bottomRight
@@ -40,7 +40,7 @@ public final class QuadrilateralView: UIView {
     }()
     
     /// The quadrilateral drawn on the view.
-    private(set) var quad: Quadrilateral?
+    public private(set) var quad: Quadrilateral?
     
     public var editable = false {
         didSet {

@@ -9,7 +9,7 @@
 import CoreImage
 import Foundation
 
-extension CIImage {
+public extension CIImage {
     /// Applies an AdaptiveThresholding filter to the image, which enhances the image and makes it completely gray scale
     func applyingAdaptiveThreshold() -> UIImage? {
         guard let colorKernel = CIColorKernel(source:

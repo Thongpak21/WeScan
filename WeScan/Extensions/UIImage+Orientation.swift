@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension UIImage {
+public extension UIImage {
     
     /// Returns the same image with a portrait orientation.
     func applyingPortraitOrientation() -> UIImage {
@@ -27,9 +27,11 @@ extension UIImage {
     }
     
     /// Data structure to easily express rotation options.
-    struct RotationOptions: OptionSet {
-        let rawValue: Int
-        
+    public struct RotationOptions: OptionSet {
+        public let rawValue: Int
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
         static let flipOnVerticalAxis = RotationOptions(rawValue: 1)
         static let flipOnHorizontalAxis = RotationOptions(rawValue: 2)
     }
@@ -40,7 +42,7 @@ extension UIImage {
     ///   - rotationAngle: The angle to rotate the image by.
     ///   - options: Options to apply to the image.
     /// - Returns: The new image rotated and optentially flipped (@see options).
-    func rotated(by rotationAngle: Measurement<UnitAngle>, options: RotationOptions = []) -> UIImage? {
+    public func rotated(by rotationAngle: Measurement<UnitAngle>, options: RotationOptions = []) -> UIImage? {
         guard let cgImage = self.cgImage else { return nil }
         
         let rotationInRadians = CGFloat(rotationAngle.converted(to: .radians).value)
@@ -70,7 +72,7 @@ extension UIImage {
     }
     
     /// Rotates the image based on the information collected by the accelerometer
-    func withFixedOrientation() -> UIImage {
+    public func withFixedOrientation() -> UIImage {
         var imageAngle: Double = 0.0
         
         var shouldRotate = true

@@ -10,7 +10,10 @@ import UIKit
 import AVFoundation
 
 /// The `EditScanViewController` offers an interface for the user to edit the detected quadrilateral.
-final class EditScanViewController: UIViewController {
+public protocol EditScanViewControllerDelegate: class {
+    func didEditSuccess(image: UIImage)
+}
+public final class EditScanViewController: UIViewController {
     
     lazy private var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -22,7 +25,7 @@ final class EditScanViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+    public weak var delegate: EditScanViewControllerDelegate?
     lazy private var quadView: QuadrilateralView = {
         let quadView = QuadrilateralView()
         quadView.editable = true
@@ -38,10 +41,10 @@ final class EditScanViewController: UIViewController {
     }()
 
     /// The image the quadrilateral was detected on.
-    private let image: UIImage
+    public let image: UIImage
     
     /// The detected quadrilateral that can be edited by the user. Uses the image's coordinates.
-    private var quad: Quadrilateral
+    public var quad: Quadrilateral
     
     private var zoomGestureController: ZoomGestureController!
     
@@ -50,7 +53,7 @@ final class EditScanViewController: UIViewController {
     
     // MARK: - Life Cycle
     
-    init(image: UIImage, quad: Quadrilateral?, rotateImage: Bool = true) {
+    public init(image: UIImage, quad: Quadrilateral?, rotateImage: Bool = true) {
         self.image = rotateImage ? image.applyingPortraitOrientation() : image
         self.quad = quad ?? EditScanViewController.defaultQuad(forImage: image)
         super.init(nibName: nil, bundle: nil)
@@ -60,7 +63,7 @@ final class EditScanViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
@@ -75,13 +78,13 @@ final class EditScanViewController: UIViewController {
         view.addGestureRecognizer(touchDown)
     }
     
-    override func viewDidLayoutSubviews() {
+    override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         adjustQuadViewConstraints()
         displayQuad()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         // Work around for an iOS 11.2 bug where UIBarButtonItems don't get back to their normal state after being pressed.
@@ -116,9 +119,7 @@ final class EditScanViewController: UIViewController {
         
         NSLayoutConstraint.activate(quadViewConstraints + imageViewConstraints)
     }
-    
-    // MARK: - Actions
-    
+
     @objc func pushReviewController() {
         guard let quad = quadView.quad,
             let ciImage = CIImage(image: image) else {
@@ -157,8 +158,8 @@ final class EditScanViewController: UIViewController {
         
         let results = ImageScannerResults(originalImage: image, scannedImage: finalImage, enhancedImage: enhancedImage, doesUserPreferEnhancedImage: false, detectedRectangle: scaledQuad)
         let reviewViewController = ReviewViewController(results: results)
-        
-        navigationController?.pushViewController(reviewViewController, animated: true)
+        delegate?.didEditSuccess(image: finalImage)
+//        navigationController?.pushViewController(reviewViewController, animated: true)
     }
 
     private func displayQuad() {

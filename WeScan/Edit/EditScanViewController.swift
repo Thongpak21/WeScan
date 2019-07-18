@@ -68,7 +68,7 @@ public final class EditScanViewController: UIViewController {
         
         setupViews()
         setupConstraints()
-        title = NSLocalizedString("wescan.edit.title", tableName: nil, bundle: Bundle(for: EditScanViewController.self), value: "ถ่ายบัตรประชาชน", comment: "The title of the EditScanViewController")
+        title = "ถ่ายรูปบัตร"
         self.navigationController?.navigationBar.backItem?.title = ""
         navigationItem.rightBarButtonItem = nextButton
         

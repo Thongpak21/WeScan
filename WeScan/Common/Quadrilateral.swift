@@ -33,14 +33,14 @@ public struct Quadrilateral: Transformable {
     }
 
     @available(iOS 11.0, *)
-    init(rectangleObservation: VNRectangleObservation) {
+    public init(rectangleObservation: VNRectangleObservation) {
         self.topLeft = rectangleObservation.topLeft
         self.topRight = rectangleObservation.topRight
         self.bottomLeft = rectangleObservation.bottomLeft
         self.bottomRight = rectangleObservation.bottomRight
     }
 
-    init(topLeft: CGPoint, topRight: CGPoint, bottomRight: CGPoint, bottomLeft: CGPoint) {
+    public init(topLeft: CGPoint, topRight: CGPoint, bottomRight: CGPoint, bottomLeft: CGPoint) {
         self.topLeft = topLeft
         self.topRight = topRight
         self.bottomRight = bottomRight
@@ -195,7 +195,7 @@ public struct Quadrilateral: Transformable {
     }
 }
 
-extension Quadrilateral {
+public extension Quadrilateral {
     
     /// Converts the current to the cartesian coordinate system (where 0 on the y axis is at the bottom).
     ///
